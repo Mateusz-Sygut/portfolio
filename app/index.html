@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mateusz Sygut · Leaf Webs – aplikacje i strony</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+    <script>tailwind.config = window.TAILWIND_CONFIG;</script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .portfolio-bench-bg { background-image: url('assets/bench-small.jpg'); }
+        @media (min-width: 1024px) {
+            .portfolio-bench-bg { background-image: url('assets/bench-big.jpg'); }
+        }
+    </style>
+</head>
+<body class="bg-base text-zinc-100 font-sans antialiased">
+
+    <nav class="sticky top-0 z-50 bg-base/95 backdrop-blur-md border-b border-zinc-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="text-xl font-semibold tracking-tight text-white hover:text-accent transition-colors">Leaf Webs</a>
+                <button type="button" id="navToggle" class="md:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <div id="navMenu" class="hidden md:flex items-center gap-1">
+                    <a href="#home" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors">Home</a>
+                    <a href="#o-mnie" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors">O mnie</a>
+                    <a href="#projekty" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors">Projekty</a>
+                    <a href="#kontakt" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors">Kontakt</a>
+                </div>
+            </div>
+            <div id="navMenuMobile" class="hidden md:hidden pb-4 space-y-1">
+                <a href="#home" class="nav-link block px-4 py-3 rounded-lg text-zinc-400 hover:text-white hover:bg-surface">Home</a>
+                <a href="#o-mnie" class="nav-link block px-4 py-3 rounded-lg text-zinc-400 hover:text-white hover:bg-surface">O mnie</a>
+                <a href="#projekty" class="nav-link block px-4 py-3 rounded-lg text-zinc-400 hover:text-white hover:bg-surface">Projekty</a>
+                <a href="#kontakt" class="nav-link block px-4 py-3 rounded-lg text-zinc-400 hover:text-white hover:bg-surface">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero-header-perspective min-h-screen flex flex-col items-center justify-center text-center px-4 bg-gradient-to-b from-base via-section to-base scroll-mt-16">
+        <div id="heroParallax" class="hero-parallax-wrap flex flex-col items-center text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">Cześć, jestem Mateusz</h1>
+            <p class="text-lg sm:text-xl text-zinc-400 max-w-lg mx-auto text-center">Tworzę aplikacje i strony – m.in. ŁawAppkę, żeby łatwiej było odkrywać fajne ławki w okolicy.</p>
+        </div>
+    </header>
+
+    <section id="o-mnie" class="py-20 sm:py-24 bg-section scroll-mt-16">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8">Parę słów o mnie</h2>
+            <p class="text-zinc-400 leading-relaxed mb-4">
+                Programuję aplikacje mobilne i strony internetowe. Najbardziej lubię projekty z duszą – takie jak ŁawAppka, gdzie chodzi o to, żeby wyjść z domu, poszukać ładnej ławki i po prostu usiąść.
+            </p>
+            <p class="text-zinc-400 leading-relaxed">
+                Poniżej znajdziesz mój główny projekt; jeśli chcesz porozmawiać o współpracy albo po prostu napisać parę słów, na dole strony jest formularz kontaktowy.
+            </p>
+        </div>
+    </section>
+
+    <section id="projekty" class="portfolio-with-bench py-20 sm:py-24 scroll-mt-16 relative">
+        <div class="portfolio-bench-bg" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-10">ŁawAppka</h2>
+            <div class="grid gap-6">
+                <article class="group rounded-2xl bg-card/90 backdrop-blur-sm border border-zinc-700/50 p-6 sm:p-8 hover:border-zinc-600 transition-colors">
+                    <h3 class="text-2xl font-semibold text-white mb-3 group-hover:text-accent transition-colors">ŁawAppka – ławki na mapie</h3>
+                    <p class="text-zinc-400 leading-relaxed mb-4">
+                        Aplikacja mobilna po to, żeby odkrywać, dodawać i oceniać ławki w okolicy. Masz mapę, punkty, odznaki i lekką rywalizację – można zbierać „rzadkie” ławki i dzielić się ulubionymi miejscami.
+                    </p>
+                    <p class="text-zinc-500 text-sm mb-6">Zbudowana w React Native (Expo), TypeScript, Supabase – mapa, gamifikacja, osiągnięcia.</p>
+                    <a href="https://github.com/mateusz-sygut/benchy" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-white font-medium hover:bg-accent-hover transition-colors">
+                        Zobacz na GitHub
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="py-20 sm:py-24 bg-section scroll-mt-16">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-10">Napisz do mnie</h2>
+            <form id="contactForm" class="space-y-5">
+                <div class="grid gap-5 sm:grid-cols-2">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-zinc-300 mb-2">Imię i nazwisko</label>
+                        <input type="text" id="name" name="name" placeholder="Wpisz swoje imię i nazwisko" required class="input-field w-full px-4 py-3 rounded-xl bg-card border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-shadow">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-zinc-300 mb-2">Adres email</label>
+                        <input type="email" id="email" name="email" placeholder="Wpisz swój adres email" required class="input-field w-full px-4 py-3 rounded-xl bg-card border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-shadow">
+                    </div>
+                </div>
+                <div>
+                    <label for="temat" class="block text-sm font-medium text-zinc-300 mb-2">Temat wiadomości</label>
+                    <input type="text" id="temat" name="temat" placeholder="Wpisz temat wiadomości" required class="input-field w-full px-4 py-3 rounded-xl bg-card border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-shadow">
+                </div>
+                <div>
+                    <label for="tresc" class="block text-sm font-medium text-zinc-300 mb-2">Treść wiadomości</label>
+                    <textarea id="tresc" name="tresc" rows="5" placeholder="Wpisz treść wiadomości" maxlength="500" required class="input-field w-full px-4 py-3 rounded-xl bg-card border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-shadow resize-none"></textarea>
+                    <p class="mt-2 text-sm text-zinc-500"><span id="charCount">0/500</span></p>
+                </div>
+                <div id="formMessage"></div>
+                <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-accent text-white font-semibold hover:bg-accent-hover transition-colors">Wyślij wiadomość</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-6 border-t border-zinc-800 bg-base text-center text-sm text-zinc-500">
+        Leaf Webs · <script>document.write(new Date().getFullYear());</script>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

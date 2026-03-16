@@ -1,0 +1,14 @@
+app/php/config.local.php
+.env
+.env.local
+
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+vendor/
+composer.lock
+
+docs/
