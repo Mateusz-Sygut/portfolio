@@ -6,7 +6,10 @@ Projekt osobistego portfolio z opisem ŁawAppki i formularzem kontaktowym (HTML,
 
 | Folder / plik | Opis |
 |---------------|------|
-| **`app/`** | Cały kod aplikacji: HTML, CSS, JS. Tu znajduje się działająca strona (portfolio + kontakt). |
+| **`index.html`** | Główna strona portfolio (hero, sekcje, formularz kontaktowy). |
+| **`css/`** | Style projektu (`main.css`). |
+| **`js/`** | Logika strony (`main.js`, `tailwind-config.js`). |
+| **`assets/`** | Obrazy i tła strony. |
 | **`docs/`** | Dokumentacja: instrukcje wgrywania, rekomendacje, plan, raport spójności. |
 | **`.gitignore`** | Ignorowane pliki pomocnicze (np. `docs/`). |
 
@@ -40,7 +43,7 @@ Projekt osobistego portfolio z opisem ŁawAppki i formularzem kontaktowym (HTML,
      - **anon public** key → `SUPABASE_ANON_KEY`
 
 5. **Konfiguracja w `index.html`**
-   - W pliku `app/index.html`, tuż **przed** `<script src="js/main.js"></script>` dodaj:
+   - W pliku `index.html`, tuż **przed** `<script src="js/main.js"></script>` dodaj:
 
    ```html
    <script>
@@ -58,7 +61,19 @@ Projekt osobistego portfolio z opisem ŁawAppki i formularzem kontaktowym (HTML,
      - `js/main.js`
 
 6. **Hostowanie frontu**
-   - Opublikuj **zawartość** folderu `app/` (nie sam folder) jako statyczną stronę, np.:
-     - GitHub Pages
-     - Netlify
-     - Vercel
+   - Dla GitHub Pages ustaw:
+     - **Source:** `Deploy from a branch`
+     - **Branch:** `main`
+     - **Folder:** `/(root)`
+
+## Weryfikacja po wdrożeniu
+
+1. Otwórz stronę i wyślij testową wiadomość z formularza.
+2. W Supabase przejdź do `Database -> Table editor -> contact_messages`.
+3. Sprawdź, czy pojawił się nowy rekord z `name`, `email`, `subject`, `message`.
+
+## Typowe problemy
+
+- **Brak zapisu w bazie:** sprawdź, czy `SUPABASE_URL` i `SUPABASE_ANON_KEY` są ustawione poprawnie.
+- **Błąd uprawnień:** upewnij się, że polityka RLS dla `INSERT` na `contact_messages` istnieje i jest przypisana do roli `anon`.
+- **Zły adres strony:** w GitHub Pages używaj `main + /(root)`, bo projekt jest teraz w katalogu głównym repo.
