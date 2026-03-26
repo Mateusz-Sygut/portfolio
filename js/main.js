@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         formMessage.textContent = 'Nie udało się wysłać wiadomości.';
                     } else {
                         formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-success';
-                        formMessage.textContent = 'Dziękujemy za wiadomość!';
+                        formMessage.textContent = 'Dziękuję za wiadomość!';
                         form.reset();
                         var counter = document.getElementById('charCount');
                         if (counter) counter.textContent = '0/500';
