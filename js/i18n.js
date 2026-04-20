@@ -6,7 +6,7 @@
     var STRINGS = {
         pl: {
             'meta.title': 'Mateusz Sygut · Leaf Webs – aplikacje i strony',
-            'nav.home': 'Home',
+            'nav.home': 'Start',
             'nav.about': 'O mnie',
             'nav.projects': 'Projekty',
             'nav.contact': 'Kontakt',
