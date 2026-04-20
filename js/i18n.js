@@ -137,15 +137,15 @@
 
     function updateLangButtons() {
         var lang = currentLang();
+        var track = document.getElementById('langSwitch');
+        if (track) track.setAttribute('data-lang', lang);
         var plBtn = document.getElementById('langPl');
         var enBtn = document.getElementById('langEn');
         if (plBtn) {
-            plBtn.classList.toggle('bg-accent', lang === 'pl');
             plBtn.classList.toggle('text-white', lang === 'pl');
             plBtn.classList.toggle('text-zinc-400', lang !== 'pl');
         }
         if (enBtn) {
-            enBtn.classList.toggle('bg-accent', lang === 'en');
             enBtn.classList.toggle('text-white', lang === 'en');
             enBtn.classList.toggle('text-zinc-400', lang !== 'en');
         }
@@ -158,13 +158,11 @@
         updateLangButtons();
     }
 
-    function initLangSwitch() {
+    function bindLangSwitch() {
         var plBtn = document.getElementById('langPl');
         var enBtn = document.getElementById('langEn');
         if (plBtn) plBtn.addEventListener('click', function () { setLang('pl'); });
         if (enBtn) enBtn.addEventListener('click', function () { setLang('en'); });
-        applyTexts();
-        updateLangButtons();
     }
 
     window.LEAF_I18N = {
@@ -174,5 +172,8 @@
         applyTexts: applyTexts
     };
 
-    document.addEventListener('DOMContentLoaded', initLangSwitch);
+    /* Teksty od razu po parsowaniu skryptu (mniej „pustki” przy pustych data-i18n w HTML). */
+    applyTexts();
+    updateLangButtons();
+    document.addEventListener('DOMContentLoaded', bindLangSwitch);
 })();
