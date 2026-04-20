@@ -124,6 +124,11 @@ function escapeHtmlContact(text) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    function leafT(key) {
+        if (window.LEAF_I18N && typeof window.LEAF_I18N.leafT === 'function') return window.LEAF_I18N.leafT(key);
+        return key;
+    }
+
     var form = document.getElementById('contactForm');
     var formMessage = document.getElementById('formMessage');
     var submitBtn = form ? form.querySelector('button[type="submit"]') : null;
@@ -134,22 +139,22 @@ document.addEventListener('DOMContentLoaded', function () {
             var email = document.getElementById('email').value.trim();
             var temat = document.getElementById('temat').value.trim();
             var message = document.getElementById('tresc').value.trim();
-            
+
             var errors = [];
-            if (name === '') errors.push('Imię i nazwisko jest wymagane.');
-            if (email === '') errors.push('Adres email jest wymagany.');
-            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Adres email musi być prawidłowy.');
-            if (message === '') errors.push('Treść wiadomości jest wymagana.');
-            
+            if (name === '') errors.push(leafT('form.err.name'));
+            if (email === '') errors.push(leafT('form.err.email'));
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push(leafT('form.err.emailInvalid'));
+            if (message === '') errors.push(leafT('form.err.body'));
+
             if (errors.length > 0) {
                 formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                formMessage.innerHTML = '<ul class="list-disc list-inside space-y-1">' + errors.map(function (e) { return '<li>' + escapeHtmlContact(e) + '</li>'; }).join('') + '</ul>';
+                formMessage.innerHTML = '<ul class="list-disc list-inside space-y-1">' + errors.map(function (err) { return '<li>' + escapeHtmlContact(err) + '</li>'; }).join('') + '</ul>';
                 return;
             }
 
             if (typeof window.supabase === 'undefined') {
                 formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                formMessage.textContent = 'Formularz nie jest skonfigurowany – brak klienta Supabase.';
+                formMessage.textContent = leafT('form.msg.supabaseClient');
                 return;
             }
 
@@ -158,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
                 formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                formMessage.textContent = 'Formularz nie jest skonfigurowany – uzupełnij SUPABASE_URL i SUPABASE_ANON_KEY.';
+                formMessage.textContent = leafT('form.msg.supabaseKeys');
                 return;
             }
 
@@ -168,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (submitBtn) submitBtn.disabled = true;
             formMessage.className = 'rounded-xl px-4 py-3 text-sm text-zinc-300';
-            formMessage.textContent = 'Wysyłanie wiadomości...';
+            formMessage.textContent = leafT('form.msg.sending');
 
             window._supabaseClient
                 .from('contact_messages')
@@ -181,10 +186,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(function (result) {
                     if (result.error) {
                         formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                        formMessage.textContent = 'Nie udało się wysłać wiadomości.';
+                        formMessage.textContent = leafT('form.msg.fail');
                     } else {
                         formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-success';
-                        formMessage.textContent = 'Dziękuję za wiadomość!';
+                        formMessage.textContent = leafT('form.msg.ok');
                         form.reset();
                         var counter = document.getElementById('charCount');
                         if (counter) counter.textContent = '0/500';
@@ -192,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(function () {
                     formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                    formMessage.textContent = 'Błąd połączenia z Supabase.';
+                    formMessage.textContent = leafT('form.msg.net');
                 })
                 .finally(function () {
                     if (submitBtn) submitBtn.disabled = false;
