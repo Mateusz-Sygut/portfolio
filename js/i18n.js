@@ -32,7 +32,7 @@
             'contact.namePh': 'Wpisz swoje imię i nazwisko',
             'contact.emailLabel': 'Adres email',
             'contact.emailPh': 'Wpisz swój adres email',
-            'contact.subjectLabel': 'Temat wiadomości',
+            'contact.subjectLabel': 'Temat',
             'contact.subjectPh': 'Wpisz temat wiadomości',
             'contact.bodyLabel': 'Treść wiadomości',
             'contact.bodyPh': 'Wpisz treść wiadomości',
@@ -172,7 +172,6 @@
         applyTexts: applyTexts
     };
 
-    /* Teksty od razu po parsowaniu skryptu (mniej „pustki” przy pustych data-i18n w HTML). */
     applyTexts();
     updateLangButtons();
     document.addEventListener('DOMContentLoaded', bindLangSwitch);

@@ -12,6 +12,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
     <style>
         .portfolio-bench-bg { background-image: url('assets/bench-small.jpg'); }
         @media (min-width: 1024px) {
@@ -104,6 +112,13 @@
     <section id="kontakt" class="py-20 sm:py-24 bg-section scroll-mt-16">
         <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-white text-center mb-10" data-i18n="contact.h2"></h2>
+            <div
+                id="contactDevicesHost"
+                class="contact-devices-host mb-6"
+                data-contact-email="mateuszsygut8@gmail.com"
+                data-contact-phone="+48 692 486 005"
+                data-i18n-aria="contact.devicesAria"
+            ></div>
             <form id="contactForm" class="space-y-5">
                 <div class="grid gap-5 sm:grid-cols-2">
                     <div>
@@ -141,5 +156,6 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
+    <script type="module" src="js/contact-devices-3d.js"></script>
 </body>
 </html>
