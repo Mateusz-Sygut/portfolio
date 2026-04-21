@@ -10,8 +10,7 @@ Projekt osobistego portfolio z opisem ŁawAppki i formularzem kontaktowym (HTML,
 | **`css/`** | Style projektu (`main.css`). |
 | **`js/`** | Logika strony (`main.js`, `tailwind-config.js`). |
 | **`assets/`** | Obrazy i tła strony. |
-| **`docs/`** | Dokumentacja: instrukcje wgrywania, rekomendacje, plan, raport spójności. |
-| **`.gitignore`** | Ignorowane pliki pomocnicze (np. `docs/`). |
+| **`.gitignore`** | Ignorowane pliki lokalne i artefakty edytora. |
 
 ## Szybki start (Supabase + statyczny hosting)
 
