@@ -139,16 +139,20 @@
         var lang = currentLang();
         var track = document.getElementById('langSwitch');
         if (track) track.setAttribute('data-lang', lang);
-        var plBtn = document.getElementById('langPl');
-        var enBtn = document.getElementById('langEn');
-        if (plBtn) {
-            plBtn.classList.toggle('text-white', lang === 'pl');
-            plBtn.classList.toggle('text-zinc-400', lang !== 'pl');
-        }
-        if (enBtn) {
-            enBtn.classList.toggle('text-white', lang === 'en');
-            enBtn.classList.toggle('text-zinc-400', lang !== 'en');
-        }
+        var trackM = document.getElementById('langSwitchMobile');
+        if (trackM) trackM.setAttribute('data-lang', lang);
+        [['langPl', 'langEn'], ['langPlMobile', 'langEnMobile']].forEach(function (ids) {
+            var plBtn = document.getElementById(ids[0]);
+            var enBtn = document.getElementById(ids[1]);
+            if (plBtn) {
+                plBtn.classList.toggle('text-white', lang === 'pl');
+                plBtn.classList.toggle('text-zinc-400', lang !== 'pl');
+            }
+            if (enBtn) {
+                enBtn.classList.toggle('text-white', lang === 'en');
+                enBtn.classList.toggle('text-zinc-400', lang !== 'en');
+            }
+        });
     }
 
     function setLang(lang) {
@@ -159,10 +163,12 @@
     }
 
     function bindLangSwitch() {
-        var plBtn = document.getElementById('langPl');
-        var enBtn = document.getElementById('langEn');
-        if (plBtn) plBtn.addEventListener('click', function () { setLang('pl'); });
-        if (enBtn) enBtn.addEventListener('click', function () { setLang('en'); });
+        [['langPl', 'langEn'], ['langPlMobile', 'langEnMobile']].forEach(function (ids) {
+            var plBtn = document.getElementById(ids[0]);
+            var enBtn = document.getElementById(ids[1]);
+            if (plBtn) plBtn.addEventListener('click', function () { setLang('pl'); });
+            if (enBtn) enBtn.addEventListener('click', function () { setLang('en'); });
+        });
     }
 
     window.LEAF_I18N = {

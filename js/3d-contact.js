@@ -103,11 +103,7 @@ function createLaptop(screenTex) {
 
     var sw = (bw - 0.06) * 0.96;
     var sh = lidDepth * 0.92;
-    /*
-     * Ekran był wewnątrz prostopadłościanu pokrywy — metal wygrywał w z-bufferze
-     * i nie było widać ani gradientu ani tekstu. Wysuwamy płaszczyznę nad obudowę
-     * i wyłączamy depth test, żeby zawsze rysowała się „nad” klapą.
-     */
+
     var screenMat = new THREE.MeshBasicMaterial({
         map: screenTex,
         toneMapped: false,
@@ -120,7 +116,6 @@ function createLaptop(screenTex) {
     screenMat.polygonOffsetFactor = -2;
     screenMat.polygonOffsetUnits = -2;
     var screen = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), screenMat);
-    /* flipY=false na teksturze + ten układ obrotów = czytelny tekst od wewnętrznej strony klapy */
     screen.rotation.set(-Math.PI / 2, Math.PI, 0);
     screen.position.set(0, -0.004, lidDepth / 2 - 0.01);
     screen.renderOrder = 20;
@@ -153,7 +148,6 @@ function init(host) {
     scene.background = null;
 
     var camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 80);
-    /* Start: trochę bliżej + delikatnie z góry */
     camera.position.set(1.16, 1.78, 2.92);
 
     var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });

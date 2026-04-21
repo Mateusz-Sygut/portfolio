@@ -60,7 +60,9 @@ section.section-visible {
     }
 
     #langPl,
-    #langEn {
+    #langEn,
+    #langPlMobile,
+    #langEnMobile {
         transition-duration: 0.12s !important;
     }
 }
