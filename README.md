@@ -34,9 +34,9 @@ Osobiste portfolio online z naciskiem na UX, nowoczesny wygląd i czytelna preze
 ## Technologie
 
 - HTML5, CSS3, JavaScript (ES6+)
-- Tailwind CSS, SCSS
+- CSS, SCSS, Tailwind CSS 
 - TypeScript
-- React / podejście komponentowe
+- React
 - Supabase
 - Narzędzia AI (Microsoft Copilot, Cursor, itp.)
 - Git / GitHub / GitLab
