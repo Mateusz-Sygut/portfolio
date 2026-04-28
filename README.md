@@ -24,7 +24,7 @@ W codziennej pracy stawiam na:
 
 ## Projekty
 
-### Benchy (LawAppka)
+### Benchy (ŁawAppka)
 Aplikacja mobilna do odkrywania, oceniania i dodawania ławek na mapie.  
 Projekt łączy geolokalizacje, elementy grywalizacji i budowanie zaangażowania użytkowników.
 
@@ -37,6 +37,7 @@ Osobiste portfolio online z naciskiem na UX, nowoczesny wygląd i czytelna preze
 - CSS, SCSS, Tailwind CSS 
 - TypeScript
 - React
+- React Native
 - Supabase
 - Narzędzia AI (Microsoft Copilot, Cursor, itp.)
 - Git / GitHub / GitLab
@@ -71,7 +72,7 @@ W `index.html` ustaw:
 </script>
 ```
 
-W bazie utwórz tabele `contact_messages` i polityke RLS pozwalajaca na `INSERT` dla roli `anon`.
+W bazie utwórz tabele `contact_messages` i polityke RLS pozwalającą na `INSERT` dla roli `anon`.
 
 ## Struktura projektu
 
