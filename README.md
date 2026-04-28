@@ -1,78 +1,85 @@
-# Portfolio (Leaf Webs)
+# Leaf Webs - Moje portfolio
 
-Projekt osobistego portfolio z opisem ŁawAppki i formularzem kontaktowym (HTML, Tailwind CSS, vanilla JS, Supabase jako backend-as-a-service).
+Nowoczesne portfolio frontend developera, pokazujące projekty, styl pracy i sposób myślenia o produkcie.  
+Strona łączy estetyke z praktycznym celem: szybkim przedstawieniem kompetencji oraz ułatwieniem kontaktu.
+
+## O mnie
+
+Jestem Junior Frontend Developerem, rozwijam sie w kierunku tworzenia czytelnych, responsywnych i dopracowanych interfejsów.  
+łącze doswiadczenie techniczne z dobra organizacja pracy, komunikacją w zespole i dbałością o detale.
+
+W codziennej pracy stawiam na:
+- komponentowe podejście i reużywalność,
+- przejrzystość kodu i dobra czytelność UI,
+- iteracyjne usprawnianie produktu,
+- odpowiedzialność za jakość i stabilność wdrożeń.
+
+## Co pokazuje to portfolio
+
+- sekcje prezentujace mnie i moje projekty,
+- case projektu Benchy (ŁawAppka),
+- interaktywny moduł 3D w sekcji kontaktu,
+- formularz kontaktowy z zapisem wiadomości do Supabase,
+- wersje jezykowe PL/EN.
+
+## Projekty
+
+### Benchy (LawAppka)
+Aplikacja mobilna do odkrywania, oceniania i dodawania ławek na mapie.  
+Projekt łączy geolokalizacje, elementy grywalizacji i budowanie zaangażowania użytkowników.
+
+### Leaf Webs (to repozytorium)
+Osobiste portfolio online z naciskiem na UX, nowoczesny wygląd i czytelna prezentacje wartości biznesowej.
+
+## Technologie
+
+- HTML5, CSS3, JavaScript (ES6+)
+- Tailwind CSS, SCSS
+- TypeScript
+- React / podejście komponentowe
+- Supabase
+- Narzędzia AI (Microsoft Copilot, Cursor, itp.)
+- Git / GitHub / GitLab
+- Jira, Confluence
+- SQL
+- Python
+- Office 365, Google Docs
+- WordPress
+
+## Doswiadczenie i profil
+
+Poza frontendem rozwijam umiejetności wspierające pracę projektową:
+- praca zespołowa i komunikacja,
+- analityczne rozwiazywanie problemów,
+- dokumentacja i organizacja pracy,
+- szybkie uczenie sie nowych narzędzi.
+
+## Szybki start
+
+1. Sklonuj repozytorium.
+2. Otworz `index.html` lokalnie lub uruchom przez prosty serwer statyczny.
+3. (Opcjonalnie) skonfiguruj Supabase, aby formularz zapisywal wiadomosci.
+
+### Konfiguracja Supabase (opcjonalna)
+
+W `index.html` ustaw:
+
+```html
+<script>
+  window.SUPABASE_URL = 'https://twoj-projekt.supabase.co';
+  window.SUPABASE_ANON_KEY = 'twoj_anon_public_key';
+</script>
+```
+
+W bazie utwórz tabele `contact_messages` i polityke RLS pozwalajaca na `INSERT` dla roli `anon`.
 
 ## Struktura projektu
 
-| Folder / plik | Opis |
-|---------------|------|
-| **`index.html`** | Główna strona portfolio (hero, sekcje, formularz kontaktowy). |
-| **`css/`** | Style projektu (`main.css`). |
-| **`js/`** | Logika strony (`main.js`, `tailwind-config.js`). |
-| **`assets/`** | Obrazy i tła strony. |
-| **`.gitignore`** | Ignorowane pliki lokalne i artefakty edytora. |
+- `index.html` - główna strona portfolio
+- `css/` - style
+- `js/` - logika UI, i18n, interakcje i modul 3D
+- `assets/` - grafiki i tła
 
-## Szybki start (Supabase + statyczny hosting)
+## Kontakt
 
-1. **Utwórz projekt w Supabase**
-   - Zaloguj się na `https://app.supabase.com` i utwórz projekt.
-
-2. **Tabela `contact_messages`**
-   - W panelu: **Database → Tables → Create table**.
-   - Nazwa: `contact_messages`, RLS włączone (domyślnie).
-   - Kolumny (przykład):
-     - `id` – `uuid`, primary key, default `gen_random_uuid()`
-     - `name` – `text`, not null
-     - `email` – `text`, not null
-     - `subject` – `text`, not null
-     - `message` – `text`, not null
-     - `created_at` – `timestamptz`, not null, default `now()`
-
-3. **Polityka RLS (allow insert)**
-   - W tabeli `contact_messages` przejdź do zakładki **RLS / Policies**.
-   - Dodaj nową politykę typu **INSERT** (np. `allow_insert_from_anon`) z warunkiem:
-     - `USING: true`
-     - `WITH CHECK: true`
-   - Dzięki temu anonimowi użytkownicy (klucz `anon`) mogą dodawać rekordy z formularza.
-
-4. **Klucze Supabase**
-   - W projekcie Supabase: **Project Settings → API**.
-   - Skopiuj:
-     - **Project URL** → `SUPABASE_URL`
-     - **anon public** key → `SUPABASE_ANON_KEY`
-
-5. **Konfiguracja w `index.html`**
-   - W pliku `index.html`, tuż **przed** `<script src="js/main.js"></script>` dodaj:
-
-   ```html
-   <script>
-     window.SUPABASE_URL = 'https://TWOJ_PROJEKT.supabase.co';
-     window.SUPABASE_ANON_KEY = 'TWÓJ_ANON_PUBLIC_KEY';
-   </script>
-   ```
-
-   - Kolejność skryptów na dole strony powinna być:
-     - Tailwind CDN
-     - `js/tailwind-config.js`
-     - konfiguracja Tailwinda
-     - CDN `@supabase/supabase-js@2`
-     - powyższy blok z `SUPABASE_URL` i `SUPABASE_ANON_KEY`
-     - `js/main.js`
-
-6. **Hostowanie frontu**
-   - Dla GitHub Pages ustaw:
-     - **Source:** `Deploy from a branch`
-     - **Branch:** `main`
-     - **Folder:** `/(root)`
-
-## Weryfikacja po wdrożeniu
-
-1. Otwórz stronę i wyślij testową wiadomość z formularza.
-2. W Supabase przejdź do `Database -> Table editor -> contact_messages`.
-3. Sprawdź, czy pojawił się nowy rekord z `name`, `email`, `subject`, `message`.
-
-## Typowe problemy
-
-- **Brak zapisu w bazie:** sprawdź, czy `SUPABASE_URL` i `SUPABASE_ANON_KEY` są ustawione poprawnie.
-- **Błąd uprawnień:** upewnij się, że polityka RLS dla `INSERT` na `contact_messages` istnieje i jest przypisana do roli `anon`.
-- **Zły adres strony:** w GitHub Pages używaj `main + /(root)`, bo projekt jest teraz w katalogu głównym repo.
+Portfolio zostalo zaprojektowane tak, by kontakt byl szybki i naturalny - przez formularz, e-mail lub numer telefonu.
