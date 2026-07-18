@@ -292,26 +292,46 @@ section.section-visible {
     display: none;
 }
 
-.tech-grid {
+.tech-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.tech-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.tech-table tbody {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.75rem;
 }
 
 @media (min-width: 640px) {
-    .tech-grid {
+    .tech-table tbody {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
-    .tech-grid {
+    .tech-table tbody {
         grid-template-columns: repeat(3, 1fr);
         gap: 0.875rem;
     }
 }
 
-.tech-cell {
+.tech-table tbody tr {
+    display: flex;
+    flex-direction: column;
     position: relative;
     isolation: isolate;
     border-radius: 1rem;
@@ -321,7 +341,7 @@ section.section-visible {
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
 }
 
-.tech-cell::before {
+.tech-table tbody tr::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -347,7 +367,7 @@ section.section-visible {
     transition: opacity 0.3s ease, background 0.3s ease;
 }
 
-.tech-cell:hover {
+.tech-table tbody tr:hover {
     transform: translateY(-2px);
     box-shadow:
         0 0 0 1px rgba(16, 185, 129, 0.12),
@@ -355,7 +375,7 @@ section.section-visible {
         0 0 36px rgba(16, 185, 129, 0.16);
 }
 
-.tech-cell:hover::before {
+.tech-table tbody tr:hover::before {
     opacity: 1;
     background: linear-gradient(
         135deg,
@@ -365,16 +385,30 @@ section.section-visible {
     );
 }
 
-.tech-cell-name {
+.tech-table tbody th,
+.tech-table tbody td {
     display: block;
+    padding: 0;
+    border: none;
+    background: transparent;
+    text-align: left;
+}
+
+.tech-table tbody th {
     font-size: 0.9375rem;
     font-weight: 600;
     color: #fafafa;
     letter-spacing: -0.01em;
 }
 
-.tech-cell-note {
-    display: block;
+.tech-table tbody th code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fafafa;
+}
+
+.tech-table tbody td {
     margin-top: 0.35rem;
     font-size: 0.75rem;
     line-height: 1.45;
@@ -409,13 +443,13 @@ section.section-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .tech-cell,
-    .tech-cell::before,
+    .tech-table tbody tr,
+    .tech-table tbody tr::before,
     .tech-tab {
         transition-duration: 0.01ms !important;
     }
 
-    .tech-cell:hover {
+    .tech-table tbody tr:hover {
         transform: none;
     }
 }

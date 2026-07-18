@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mateusz Sygut · Leaf Webs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind-config.js"></script>
+    <script src="js/tailwind-config.js?v=2"></script>
     <script>tailwind.config = window.TAILWIND_CONFIG;</script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?v=4">
     <script type="importmap">
     {
         "imports": {
@@ -119,166 +119,206 @@
                     </div>
 
                     <div id="techPanelFrontend" class="tech-panel" role="tabpanel" aria-labelledby="techTabFrontend" data-tech-panel="frontend">
-                        <div class="tech-grid">
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">HTML</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.html"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">CSS / Sass</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.css"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">JavaScript</span>
-                                <span class="tech-cell-note">ES6+</span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">TypeScript</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.ts"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">React.js</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.react"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">React Native + Expo</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.rn"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Tailwind CSS</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.tailwind"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">React Navigation</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.navigation"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">react-native-maps</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.maps"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">expo-location</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.location"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">expo-gl + three</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.three"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">react-i18next</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.i18n"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">WordPress</span>
-                                <span class="tech-cell-note">CMS</span>
-                            </div>
+                        <div class="tech-table-wrap">
+                            <table class="tech-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-i18n="stack.col.tech"></th>
+                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">HTML</th>
+                                        <td data-i18n="stack.note.html"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CSS / Sass</th>
+                                        <td data-i18n="stack.note.css"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">JavaScript</th>
+                                        <td>ES6+</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">TypeScript</th>
+                                        <td data-i18n="stack.note.ts"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">React.js</th>
+                                        <td data-i18n="stack.note.react"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">React Native + Expo</th>
+                                        <td data-i18n="stack.note.rn"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tailwind CSS</th>
+                                        <td data-i18n="stack.note.tailwind"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">React Navigation</th>
+                                        <td data-i18n="stack.note.navigation"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">react-native-maps</th>
+                                        <td data-i18n="stack.note.maps"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">expo-location</th>
+                                        <td data-i18n="stack.note.location"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">expo-gl + three</th>
+                                        <td data-i18n="stack.note.three"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">react-i18next</th>
+                                        <td data-i18n="stack.note.i18n"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">WordPress</th>
+                                        <td>CMS</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                     <div id="techPanelBackend" class="tech-panel" role="tabpanel" aria-labelledby="techTabBackend" data-tech-panel="backend" hidden>
-                        <div class="tech-grid">
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Supabase</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.supabase"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">PostgreSQL / SQL</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.sql"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">REST API</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.rest"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">RLS &amp; SQL functions</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.rls"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Python</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.python"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">FastAPI</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.fastapi"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Docker Compose</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.docker"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">AsyncStorage</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.async"></span>
-                            </div>
+                        <div class="tech-table-wrap">
+                            <table class="tech-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-i18n="stack.col.tech"></th>
+                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Supabase</th>
+                                        <td data-i18n="stack.note.supabase"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">PostgreSQL / SQL</th>
+                                        <td data-i18n="stack.note.sql"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">REST API</th>
+                                        <td data-i18n="stack.note.rest"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">RLS &amp; SQL functions</th>
+                                        <td data-i18n="stack.note.rls"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Python</th>
+                                        <td data-i18n="stack.note.python"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">FastAPI</th>
+                                        <td data-i18n="stack.note.fastapi"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Docker Compose</th>
+                                        <td data-i18n="stack.note.docker"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">AsyncStorage</th>
+                                        <td data-i18n="stack.note.async"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                     <div id="techPanelTools" class="tech-panel" role="tabpanel" aria-labelledby="techTabTools" data-tech-panel="tools" hidden>
-                        <div class="tech-grid">
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Git</span>
-                                <span class="tech-cell-note">GitHub / GitLab</span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Node.js + npm</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.node"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Vite</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.vite"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Webpack</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.webpack"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Metro</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.metro"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Chrome DevTools</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.devtools"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">AI tools</span>
-                                <span class="tech-cell-note">Cursor, Copilot</span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">EAS CLI</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.eas"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">tsc --noEmit</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.tsc"></span>
-                            </div>
+                        <div class="tech-table-wrap">
+                            <table class="tech-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-i18n="stack.col.tech"></th>
+                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Git</th>
+                                        <td>GitHub / GitLab</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Node.js + npm</th>
+                                        <td data-i18n="stack.note.node"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vite</th>
+                                        <td data-i18n="stack.note.vite"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Webpack</th>
+                                        <td data-i18n="stack.note.webpack"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Metro</th>
+                                        <td data-i18n="stack.note.metro"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Chrome DevTools</th>
+                                        <td data-i18n="stack.note.devtools"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">AI tools</th>
+                                        <td>Cursor, Copilot</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">EAS CLI</th>
+                                        <td data-i18n="stack.note.eas"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><code>tsc --noEmit</code></th>
+                                        <td data-i18n="stack.note.tsc"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                     <div id="techPanelCollab" class="tech-panel" role="tabpanel" aria-labelledby="techTabCollab" data-tech-panel="collab" hidden>
-                        <div class="tech-grid">
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Jira</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.jira"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Confluence</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.confluence"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Figma</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.figma"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Office 365</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.office"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name">Google Docs</span>
-                                <span class="tech-cell-note" data-i18n="stack.note.gdocs"></span>
-                            </div>
-                            <div class="tech-cell">
-                                <span class="tech-cell-name" data-i18n="stack.name.testing"></span>
-                                <span class="tech-cell-note" data-i18n="stack.note.testing"></span>
-                            </div>
+                        <div class="tech-table-wrap">
+                            <table class="tech-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-i18n="stack.col.tech"></th>
+                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Jira</th>
+                                        <td data-i18n="stack.note.jira"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Confluence</th>
+                                        <td data-i18n="stack.note.confluence"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Figma</th>
+                                        <td data-i18n="stack.note.figma"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Office 365</th>
+                                        <td data-i18n="stack.note.office"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Google Docs</th>
+                                        <td data-i18n="stack.note.gdocs"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" data-i18n="stack.name.testing"></th>
+                                        <td data-i18n="stack.note.testing"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -349,8 +389,8 @@
         window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxZW5qdWV3cXNsbmt2Z3J5aGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2OTIwOTQsImV4cCI6MjA4OTI2ODA5NH0.8yDm_uoHT0A2t4HAHywkt5ZUPiNIJyBT4aj6NaWVOj8';
     </script>
 
-    <script src="js/i18n.js"></script>
-    <script src="js/main.js"></script>
-    <script type="module" src="js/3d-contact.js"></script>
+    <script src="js/i18n.js?v=4"></script>
+    <script src="js/main.js?v=4"></script>
+    <script type="module" src="js/3d-contact.js?v=4"></script>
 </body>
 </html>
