@@ -1,9 +1,7 @@
-;(function () {
-    'use strict';
+(() => {
+    const STORAGE_KEY = 'leafLang';
 
-    var STORAGE_KEY = 'leafLang';
-
-    var STRINGS = {
+    const STRINGS = {
         pl: {
             'meta.title': 'Mateusz Sygut · Leaf Webs – aplikacje i strony',
             'nav.home': 'Start',
@@ -182,56 +180,67 @@
         }
     };
 
-    function currentLang() {
-        var stored = localStorage.getItem(STORAGE_KEY);
+    const currentLang = () => {
+        const stored = localStorage.getItem(STORAGE_KEY);
         if (stored === 'en' || stored === 'pl') return stored;
         return 'pl';
-    }
+    };
 
-    function leafT(key) {
-        var lang = currentLang();
-        var pack = STRINGS[lang] || STRINGS.pl;
-        return pack[key] != null ? pack[key] : (STRINGS.pl[key] != null ? STRINGS.pl[key] : key);
-    }
+    const resolveText = (key) => {
+        const lang = currentLang();
+        const pack = STRINGS[lang] || STRINGS.pl;
+        if (pack[key] != null) return pack[key];
+        if (STRINGS.pl[key] != null) return STRINGS.pl[key];
+        return null;
+    };
 
-    function applyTexts() {
-        var lang = currentLang();
+    const leafT = (key) => {
+        const text = resolveText(key);
+        return text != null ? text : key;
+    };
+
+    const applyTexts = () => {
+        const lang = currentLang();
         document.documentElement.setAttribute('lang', lang);
 
-        var title = leafT('meta.title');
+        const title = resolveText('meta.title');
         if (title) document.title = title;
 
-        document.querySelectorAll('[data-i18n]').forEach(function (el) {
-            var key = el.getAttribute('data-i18n');
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.getAttribute('data-i18n');
             if (!key) return;
-            var text = leafT(key);
+            const text = resolveText(key);
+            // Nie nadpisuj domyślnego HTML surowym kluczem (np. przy starym cache i18n).
             if (text != null) el.textContent = text;
         });
 
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-            var key = el.getAttribute('data-i18n-placeholder');
+        document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+            const key = el.getAttribute('data-i18n-placeholder');
             if (!key) return;
-            var text = leafT(key);
+            const text = resolveText(key);
             if (text != null) el.setAttribute('placeholder', text);
         });
 
-        document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
-            var key = el.getAttribute('data-i18n-aria');
+        document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+            const key = el.getAttribute('data-i18n-aria');
             if (!key) return;
-            var text = leafT(key);
+            const text = resolveText(key);
             if (text != null) el.setAttribute('aria-label', text);
         });
-    }
+    };
 
-    function updateLangButtons() {
-        var lang = currentLang();
-        var track = document.getElementById('langSwitch');
+    const updateLangButtons = () => {
+        const lang = currentLang();
+        const track = document.getElementById('langSwitch');
         if (track) track.setAttribute('data-lang', lang);
-        var trackM = document.getElementById('langSwitchMobile');
+        const trackM = document.getElementById('langSwitchMobile');
         if (trackM) trackM.setAttribute('data-lang', lang);
-        [['langPl', 'langEn'], ['langPlMobile', 'langEnMobile']].forEach(function (ids) {
-            var plBtn = document.getElementById(ids[0]);
-            var enBtn = document.getElementById(ids[1]);
+        for (const [plId, enId] of [
+            ['langPl', 'langEn'],
+            ['langPlMobile', 'langEnMobile'],
+        ]) {
+            const plBtn = document.getElementById(plId);
+            const enBtn = document.getElementById(enId);
             if (plBtn) {
                 plBtn.classList.toggle('text-white', lang === 'pl');
                 plBtn.classList.toggle('text-zinc-400', lang !== 'pl');
@@ -240,31 +249,29 @@
                 enBtn.classList.toggle('text-white', lang === 'en');
                 enBtn.classList.toggle('text-zinc-400', lang !== 'en');
             }
-        });
-    }
+        }
+    };
 
-    function setLang(lang) {
+    const setLang = (lang) => {
         if (lang !== 'pl' && lang !== 'en') return;
         localStorage.setItem(STORAGE_KEY, lang);
         applyTexts();
         updateLangButtons();
-    }
-
-    function bindLangSwitch() {
-        [['langPl', 'langEn'], ['langPlMobile', 'langEnMobile']].forEach(function (ids) {
-            var plBtn = document.getElementById(ids[0]);
-            var enBtn = document.getElementById(ids[1]);
-            if (plBtn) plBtn.addEventListener('click', function () { setLang('pl'); });
-            if (enBtn) enBtn.addEventListener('click', function () { setLang('en'); });
-        });
-    }
-
-    window.LEAF_I18N = {
-        leafT: leafT,
-        currentLang: currentLang,
-        setLang: setLang,
-        applyTexts: applyTexts
     };
+
+    const bindLangSwitch = () => {
+        for (const [plId, enId] of [
+            ['langPl', 'langEn'],
+            ['langPlMobile', 'langEnMobile'],
+        ]) {
+            const plBtn = document.getElementById(plId);
+            const enBtn = document.getElementById(enId);
+            if (plBtn) plBtn.addEventListener('click', () => setLang('pl'));
+            if (enBtn) enBtn.addEventListener('click', () => setLang('en'));
+        }
+    };
+
+    window.LEAF_I18N = { leafT, currentLang, setLang, applyTexts };
 
     applyTexts();
     updateLangButtons();

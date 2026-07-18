@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mateusz Sygut · Leaf Webs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind-config.js?v=2"></script>
+    <script src="js/theme.js"></script>
     <script>tailwind.config = window.TAILWIND_CONFIG;</script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css?v=4">
+    <link rel="stylesheet" href="css/app.css">
     <script type="importmap">
     {
         "imports": {
@@ -53,7 +53,7 @@
                 <div id="navMenu" class="hidden md:flex items-center gap-1 flex-1 justify-end mr-2">
                     <a href="#home" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors" data-i18n="nav.home"></a>
                     <a href="#o-mnie" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors" data-i18n="nav.about"></a>
-                    <a href="#stack" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors" data-i18n="nav.stack"></a>
+                    <a href="#stack" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors" data-i18n="nav.stack">Stack</a>
                     <a href="#projekty" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors" data-i18n="nav.projects"></a>
                     <a href="#kontakt" class="nav-link px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface transition-colors" data-i18n="nav.contact"></a>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="flex flex-col items-stretch gap-1 px-4 sm:px-6">
                     <a href="#home" class="nav-link block text-right py-3 px-4 rounded-lg text-zinc-400 hover:text-white hover:bg-surface" data-i18n="nav.home"></a>
                     <a href="#o-mnie" class="nav-link block text-right py-3 px-4 rounded-lg text-zinc-400 hover:text-white hover:bg-surface" data-i18n="nav.about"></a>
-                    <a href="#stack" class="nav-link block text-right py-3 px-4 rounded-lg text-zinc-400 hover:text-white hover:bg-surface" data-i18n="nav.stack"></a>
+                    <a href="#stack" class="nav-link block text-right py-3 px-4 rounded-lg text-zinc-400 hover:text-white hover:bg-surface" data-i18n="nav.stack">Stack</a>
                     <a href="#projekty" class="nav-link block text-right py-3 px-4 rounded-lg text-zinc-400 hover:text-white hover:bg-surface" data-i18n="nav.projects"></a>
                     <a href="#kontakt" class="nav-link block text-right py-3 px-4 rounded-lg text-zinc-400 hover:text-white hover:bg-surface" data-i18n="nav.contact"></a>
                 </div>
@@ -105,17 +105,17 @@
     <section id="stack" class="py-20 sm:py-24 bg-base scroll-mt-16">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10">
-                <h2 class="text-3xl font-bold text-white mb-3" data-i18n="stack.h2"></h2>
-                <p class="text-zinc-400 leading-relaxed" data-i18n="stack.p"></p>
+                <h2 class="text-3xl font-bold text-white mb-3" data-i18n="stack.h2">Tech stack</h2>
+                <p class="text-zinc-400 leading-relaxed" data-i18n="stack.p">Narzędzia i technologie, z którymi pracuję na co dzień – od frontendu i mobilki po backend, tooling i współpracę w zespole.</p>
             </div>
 
             <div class="tech-shell">
                 <div class="tech-shell-inner">
-                    <div class="tech-tabs mb-6" role="tablist" data-i18n-aria="stack.tabsAria">
-                        <button type="button" class="tech-tab" role="tab" id="techTabFrontend" aria-controls="techPanelFrontend" aria-selected="true" data-tech-tab="frontend" data-i18n="stack.tab.frontend"></button>
-                        <button type="button" class="tech-tab" role="tab" id="techTabBackend" aria-controls="techPanelBackend" aria-selected="false" data-tech-tab="backend" data-i18n="stack.tab.backend"></button>
-                        <button type="button" class="tech-tab" role="tab" id="techTabTools" aria-controls="techPanelTools" aria-selected="false" data-tech-tab="tools" data-i18n="stack.tab.tools"></button>
-                        <button type="button" class="tech-tab" role="tab" id="techTabCollab" aria-controls="techPanelCollab" aria-selected="false" data-tech-tab="collab" data-i18n="stack.tab.collab"></button>
+                    <div class="tech-tabs mb-6" role="tablist" data-i18n-aria="stack.tabsAria" aria-label="Kategorie technologii">
+                        <button type="button" class="tech-tab" role="tab" id="techTabFrontend" aria-controls="techPanelFrontend" aria-selected="true" data-tech-tab="frontend" data-i18n="stack.tab.frontend">Frontend</button>
+                        <button type="button" class="tech-tab" role="tab" id="techTabBackend" aria-controls="techPanelBackend" aria-selected="false" data-tech-tab="backend" data-i18n="stack.tab.backend">Backend</button>
+                        <button type="button" class="tech-tab" role="tab" id="techTabTools" aria-controls="techPanelTools" aria-selected="false" data-tech-tab="tools" data-i18n="stack.tab.tools">Tools</button>
+                        <button type="button" class="tech-tab" role="tab" id="techTabCollab" aria-controls="techPanelCollab" aria-selected="false" data-tech-tab="collab" data-i18n="stack.tab.collab">Współpraca</button>
                     </div>
 
                     <div id="techPanelFrontend" class="tech-panel" role="tabpanel" aria-labelledby="techTabFrontend" data-tech-panel="frontend">
@@ -123,18 +123,18 @@
                             <table class="tech-table">
                                 <thead>
                                     <tr>
-                                        <th scope="col" data-i18n="stack.col.tech"></th>
-                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                        <th scope="col" data-i18n="stack.col.tech">Technologia</th>
+                                        <th scope="col" data-i18n="stack.col.desc">Opis</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">HTML</th>
-                                        <td data-i18n="stack.note.html"></td>
+                                        <td data-i18n="stack.note.html">Living Standard – semantyczny markup</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">CSS / Sass</th>
-                                        <td data-i18n="stack.note.css"></td>
+                                        <td data-i18n="stack.note.css">style, layout, responsywność</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">JavaScript</th>
@@ -142,39 +142,39 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">TypeScript</th>
-                                        <td data-i18n="stack.note.ts"></td>
+                                        <td data-i18n="stack.note.ts">typowanie w web i React Native</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">React.js</th>
-                                        <td data-i18n="stack.note.react"></td>
+                                        <td data-i18n="stack.note.react">komponentowe UI w przeglądarce</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">React Native + Expo</th>
-                                        <td data-i18n="stack.note.rn"></td>
+                                        <td data-i18n="stack.note.rn">iOS, Android i web – jedna baza (Expo SDK 54)</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Tailwind CSS</th>
-                                        <td data-i18n="stack.note.tailwind"></td>
+                                        <td data-i18n="stack.note.tailwind">szybkie, spójne utility classes</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">React Navigation</th>
-                                        <td data-i18n="stack.note.navigation"></td>
+                                        <td data-i18n="stack.note.navigation">nawigacja ekranów w ŁawAppce</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">react-native-maps</th>
-                                        <td data-i18n="stack.note.maps"></td>
+                                        <td data-i18n="stack.note.maps">mapa i markery ławek</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">expo-location</th>
-                                        <td data-i18n="stack.note.location"></td>
+                                        <td data-i18n="stack.note.location">uprawnienia i GPS / proximity</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">expo-gl + three</th>
-                                        <td data-i18n="stack.note.three"></td>
+                                        <td data-i18n="stack.note.three">render 3D postaci na wybranych ekranach</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">react-i18next</th>
-                                        <td data-i18n="stack.note.i18n"></td>
+                                        <td data-i18n="stack.note.i18n">tłumaczenia PL / EN</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">WordPress</th>
@@ -190,42 +190,42 @@
                             <table class="tech-table">
                                 <thead>
                                     <tr>
-                                        <th scope="col" data-i18n="stack.col.tech"></th>
-                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                        <th scope="col" data-i18n="stack.col.tech">Technologia</th>
+                                        <th scope="col" data-i18n="stack.col.desc">Opis</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">Supabase</th>
-                                        <td data-i18n="stack.note.supabase"></td>
+                                        <td data-i18n="stack.note.supabase">Auth, PostgreSQL i API w ŁawAppce</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">PostgreSQL / SQL</th>
-                                        <td data-i18n="stack.note.sql"></td>
+                                        <td data-i18n="stack.note.sql">migracje i zapytania (PostgreSQL)</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">REST API</th>
-                                        <td data-i18n="stack.note.rest"></td>
+                                        <td data-i18n="stack.note.rest">integracje REST API</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">RLS &amp; SQL functions</th>
-                                        <td data-i18n="stack.note.rls"></td>
+                                        <td data-i18n="stack.note.rls">polityki, triggery i logika po stronie bazy</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Python</th>
-                                        <td data-i18n="stack.note.python"></td>
+                                        <td data-i18n="stack.note.python">skrypty i backend</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">FastAPI</th>
-                                        <td data-i18n="stack.note.fastapi"></td>
+                                        <td data-i18n="stack.note.fastapi">lekkie API w Pythonie</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Docker Compose</th>
-                                        <td data-i18n="stack.note.docker"></td>
+                                        <td data-i18n="stack.note.docker">lokalne środowiska i usługi</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">AsyncStorage</th>
-                                        <td data-i18n="stack.note.async"></td>
+                                        <td data-i18n="stack.note.async">lokalne preferencje (np. motyw)</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -237,8 +237,8 @@
                             <table class="tech-table">
                                 <thead>
                                     <tr>
-                                        <th scope="col" data-i18n="stack.col.tech"></th>
-                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                        <th scope="col" data-i18n="stack.col.tech">Technologia</th>
+                                        <th scope="col" data-i18n="stack.col.desc">Opis</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -248,23 +248,23 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Node.js + npm</th>
-                                        <td data-i18n="stack.note.node"></td>
+                                        <td data-i18n="stack.note.node">instalacje i skrypty developerskie</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Vite</th>
-                                        <td data-i18n="stack.note.vite"></td>
+                                        <td data-i18n="stack.note.vite">nowoczesny bundler webowy</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Webpack</th>
-                                        <td data-i18n="stack.note.webpack"></td>
+                                        <td data-i18n="stack.note.webpack">bundling w projektach web</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Metro</th>
-                                        <td data-i18n="stack.note.metro"></td>
+                                        <td data-i18n="stack.note.metro">bundler Expo / React Native</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Chrome DevTools</th>
-                                        <td data-i18n="stack.note.devtools"></td>
+                                        <td data-i18n="stack.note.devtools">debugowanie i performance</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">AI tools</th>
@@ -272,11 +272,11 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">EAS CLI</th>
-                                        <td data-i18n="stack.note.eas"></td>
+                                        <td data-i18n="stack.note.eas">buildy sklepowe (opcjonalnie)</td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><code>tsc --noEmit</code></th>
-                                        <td data-i18n="stack.note.tsc"></td>
+                                        <td data-i18n="stack.note.tsc">statyczna kontrola typów w CI</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -288,34 +288,34 @@
                             <table class="tech-table">
                                 <thead>
                                     <tr>
-                                        <th scope="col" data-i18n="stack.col.tech"></th>
-                                        <th scope="col" data-i18n="stack.col.desc"></th>
+                                        <th scope="col" data-i18n="stack.col.tech">Technologia</th>
+                                        <th scope="col" data-i18n="stack.col.desc">Opis</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">Jira</th>
-                                        <td data-i18n="stack.note.jira"></td>
+                                        <td data-i18n="stack.note.jira">zadania i sprinty</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Confluence</th>
-                                        <td data-i18n="stack.note.confluence"></td>
+                                        <td data-i18n="stack.note.confluence">dokumentacja zespołowa</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Figma</th>
-                                        <td data-i18n="stack.note.figma"></td>
+                                        <td data-i18n="stack.note.figma">design i handoff UI</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Office 365</th>
-                                        <td data-i18n="stack.note.office"></td>
+                                        <td data-i18n="stack.note.office">dokumenty i organizacja pracy</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Google Docs</th>
-                                        <td data-i18n="stack.note.gdocs"></td>
+                                        <td data-i18n="stack.note.gdocs">współdzielone notatki i briefy</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" data-i18n="stack.name.testing"></th>
-                                        <td data-i18n="stack.note.testing"></td>
+                                        <th scope="row" data-i18n="stack.name.testing">Testy</th>
+                                        <td data-i18n="stack.note.testing">testy manualne i automatyczne · ISTQB</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -389,8 +389,8 @@
         window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxZW5qdWV3cXNsbmt2Z3J5aGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2OTIwOTQsImV4cCI6MjA4OTI2ODA5NH0.8yDm_uoHT0A2t4HAHywkt5ZUPiNIJyBT4aj6NaWVOj8';
     </script>
 
-    <script src="js/i18n.js?v=4"></script>
-    <script src="js/main.js?v=4"></script>
-    <script type="module" src="js/3d-contact.js?v=4"></script>
+    <script src="js/locale.js"></script>
+    <script src="js/app.js"></script>
+    <script type="module" src="js/3d-contact.js"></script>
 </body>
 </html>
