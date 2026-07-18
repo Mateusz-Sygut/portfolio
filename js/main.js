@@ -114,6 +114,47 @@ document.addEventListener('DOMContentLoaded', function () {
             targetY = 0;
         });
     }
+
+    var tablist = document.querySelector('.tech-tabs');
+    if (tablist) {
+        var tabs = tablist.querySelectorAll('[data-tech-tab]');
+        var panels = document.querySelectorAll('[data-tech-panel]');
+
+        function activateTab(id) {
+            tabs.forEach(function (tab) {
+                var selected = tab.getAttribute('data-tech-tab') === id;
+                tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+                tab.tabIndex = selected ? 0 : -1;
+            });
+            panels.forEach(function (panel) {
+                var match = panel.getAttribute('data-tech-panel') === id;
+                if (match) panel.removeAttribute('hidden');
+                else panel.setAttribute('hidden', '');
+            });
+        }
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                activateTab(tab.getAttribute('data-tech-tab'));
+            });
+            tab.addEventListener('keydown', function (e) {
+                var keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+                if (keys.indexOf(e.key) === -1) return;
+                e.preventDefault();
+                var list = Array.prototype.slice.call(tabs);
+                var index = list.indexOf(tab);
+                var next = index;
+                if (e.key === 'ArrowRight') next = (index + 1) % list.length;
+                if (e.key === 'ArrowLeft') next = (index - 1 + list.length) % list.length;
+                if (e.key === 'Home') next = 0;
+                if (e.key === 'End') next = list.length - 1;
+                list[next].focus();
+                activateTab(list[next].getAttribute('data-tech-tab'));
+            });
+        });
+
+        activateTab('frontend');
+    }
 });
 
 function escapeHtmlContact(text) {
