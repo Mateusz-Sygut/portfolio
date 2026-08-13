@@ -1,88 +1,86 @@
+const leafT = (key) =>
+    window.LEAF_I18N?.leafT?.(key) ?? key;
+
+const escapeHtml = (text) => {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+};
+
+const setFormMessage = (el, type, content, asHtml = false) => {
+    el.className = `rounded-xl px-4 py-3 text-sm ${type}`;
+    if (asHtml) el.innerHTML = content;
+    else el.textContent = content;
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('navToggle');
     const navMenuMobile = document.getElementById('navMenuMobile');
-
     if (navToggle && navMenuMobile) {
-        navToggle.addEventListener('click', () => {
-            navMenuMobile.classList.toggle('hidden');
-        });
+        navToggle.addEventListener('click', () => navMenuMobile.classList.toggle('hidden'));
         navMenuMobile.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => {
-                navMenuMobile.classList.add('hidden');
-            });
+            link.addEventListener('click', () => navMenuMobile.classList.add('hidden'));
         });
     }
-
-    const easeInOutQuad = (t, b, c, d) => {
-        t /= d / 2;
-        if (t < 1) return (c / 2) * t * t + b;
-        t--;
-        return (-c / 2) * (t * (t - 2) - 1) + b;
-    };
 
     const sections = document.querySelectorAll('header[id], section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     const navOffset = 120;
 
     const highlightActiveSection = () => {
-        const scrollPosition = window.scrollY;
-        let currentSection = null;
+        const y = window.scrollY;
+        let current = sections[0]?.id ?? null;
         for (const section of sections) {
-            if (section.offsetTop <= scrollPosition + navOffset) {
-                currentSection = section.getAttribute('id');
-            }
-        }
-        if (!currentSection && sections.length > 0) {
-            currentSection = sections[0].getAttribute('id');
+            if (section.offsetTop <= y + navOffset) current = section.id;
         }
         navLinks.forEach((link) => {
-            link.classList.remove('active');
-            const linkHref = link.getAttribute('href');
-            if (linkHref === `#${currentSection}`) link.classList.add('active');
+            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+        });
+    };
+
+    const revealSections = () => {
+        const top = window.scrollY;
+        const bottom = top + window.innerHeight;
+        document.querySelectorAll('section').forEach((section) => {
+            const rect = section.getBoundingClientRect();
+            const elTop = rect.top + window.scrollY;
+            if (elTop + rect.height > top && elTop < bottom) {
+                section.classList.add('section-visible');
+            }
+        });
+    };
+
+    let scrollRaf = null;
+    const onScroll = () => {
+        if (scrollRaf != null) return;
+        scrollRaf = requestAnimationFrame(() => {
+            scrollRaf = null;
+            highlightActiveSection();
+            revealSections();
         });
     };
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
-        link.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (!href || href === '#' || href.length <= 1 || !href.startsWith('#')) return;
-
-            const targetElement = document.getElementById(href.slice(1));
-            if (!targetElement) return;
-
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#' || !href.startsWith('#') || href.length < 2) return;
+            const target = document.getElementById(href.slice(1));
+            if (!target) return;
             e.preventDefault();
-            e.stopPropagation();
-            this.blur();
-
-            const navbarHeight = 64;
-            const offsetPosition =
-                targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-            const start = window.pageYOffset;
-            const distance = offsetPosition - start;
-            const duration = 800;
-            let startTime = null;
-
-            const animation = (currentTime) => {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = easeInOutQuad(timeElapsed, start, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) {
-                    requestAnimationFrame(animation);
-                } else {
-                    if (history.pushState) history.pushState(null, null, href);
-                    highlightActiveSection();
-                }
-            };
-            requestAnimationFrame(animation);
+            link.blur();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.pushState?.(null, '', href);
+            highlightActiveSection();
         });
     });
 
-    window.addEventListener('scroll', highlightActiveSection);
+    window.addEventListener('scroll', onScroll, { passive: true });
     highlightActiveSection();
+    revealSections();
 
     const heroParallax = document.getElementById('heroParallax');
-    if (heroParallax) {
+    if (heroParallax && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const movePx = 18;
         const tiltDeg = 3;
         let currentX = 0;
@@ -94,12 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateTransform = () => {
             currentX += (targetX - currentX) * 0.14;
             currentY += (targetY - currentY) * 0.14;
-            const tx = currentX * movePx;
-            const ty = currentY * movePx;
-            const rx = -currentY * tiltDeg;
-            const ry = currentX * tiltDeg;
             heroParallax.style.transform =
-                `translate3d(${tx}px, ${ty}px, 0) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                `translate3d(${currentX * movePx}px, ${currentY * movePx}px, 0) ` +
+                `rotateX(${-currentY * tiltDeg}deg) rotateY(${currentX * tiltDeg}deg)`;
             const idle =
                 Math.abs(targetX - currentX) < 0.002 &&
                 Math.abs(targetY - currentY) < 0.002 &&
@@ -109,13 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         document.addEventListener('mousemove', (e) => {
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-            targetX = (e.clientX - w / 2) / (w / 2);
-            targetY = (e.clientY - h / 2) / (h / 2);
+            targetX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+            targetY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
             if (rafId === null) rafId = requestAnimationFrame(updateTransform);
         });
-
         document.body.addEventListener('mouseleave', () => {
             targetX = 0;
             targetY = 0;
@@ -130,22 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const activateTab = (id) => {
             tabs.forEach((tab) => {
                 const selected = tab.getAttribute('data-tech-tab') === id;
-                tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+                tab.setAttribute('aria-selected', String(selected));
                 tab.tabIndex = selected ? 0 : -1;
             });
             panels.forEach((panel) => {
-                if (panel.getAttribute('data-tech-panel') === id) panel.removeAttribute('hidden');
-                else panel.setAttribute('hidden', '');
+                panel.toggleAttribute('hidden', panel.getAttribute('data-tech-panel') !== id);
             });
         };
 
         tabs.forEach((tab) => {
-            tab.addEventListener('click', () => {
-                activateTab(tab.getAttribute('data-tech-tab'));
-            });
+            tab.addEventListener('click', () => activateTab(tab.getAttribute('data-tech-tab')));
             tab.addEventListener('keydown', (e) => {
-                const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
-                if (!keys.includes(e.key)) return;
+                if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
                 e.preventDefault();
                 const index = tabs.indexOf(tab);
                 let next = index;
@@ -157,29 +145,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 activateTab(tabs[next].getAttribute('data-tech-tab'));
             });
         });
-
         activateTab('frontend');
     }
-});
-
-const escapeHtmlContact = (text) => {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    const leafT = (key) => {
-        if (window.LEAF_I18N && typeof window.LEAF_I18N.leafT === 'function') {
-            return window.LEAF_I18N.leafT(key);
-        }
-        return key;
-    };
 
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
-    const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+    const submitBtn = form?.querySelector('button[type="submit"]') ?? null;
+    const tresc = document.getElementById('tresc');
+    const charCount = document.getElementById('charCount');
+
+    if (tresc && charCount) {
+        tresc.addEventListener('input', () => {
+            const length = tresc.value.length;
+            charCount.textContent = `${length}/500`;
+            charCount.classList.toggle('over-limit', length > 500);
+        });
+    }
 
     if (form && formMessage) {
         form.addEventListener('submit', async (e) => {
@@ -190,41 +171,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = document.getElementById('tresc').value.trim();
 
             const errors = [];
-            if (name === '') errors.push(leafT('form.err.name'));
-            if (email === '') errors.push(leafT('form.err.email'));
+            if (!name) errors.push(leafT('form.err.name'));
+            if (!email) errors.push(leafT('form.err.email'));
             else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push(leafT('form.err.emailInvalid'));
-            if (message === '') errors.push(leafT('form.err.body'));
+            if (!message) errors.push(leafT('form.err.body'));
 
-            if (errors.length > 0) {
-                formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                formMessage.innerHTML = `<ul class="list-disc list-inside space-y-1">${errors
-                    .map((err) => `<li>${escapeHtmlContact(err)}</li>`)
-                    .join('')}</ul>`;
+            if (errors.length) {
+                setFormMessage(
+                    formMessage,
+                    'alert-danger',
+                    `<ul class="list-disc list-inside space-y-1">${errors
+                        .map((err) => `<li>${escapeHtml(err)}</li>`)
+                        .join('')}</ul>`,
+                    true
+                );
                 return;
             }
 
             if (typeof window.supabase === 'undefined') {
-                formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                formMessage.textContent = leafT('form.msg.supabaseClient');
+                setFormMessage(formMessage, 'alert-danger', leafT('form.msg.supabaseClient'));
                 return;
             }
 
-            const SUPABASE_URL = window.SUPABASE_URL || '';
-            const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || '';
-
-            if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-                formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                formMessage.textContent = leafT('form.msg.supabaseKeys');
+            const url = window.SUPABASE_URL || '';
+            const key = window.SUPABASE_ANON_KEY || '';
+            if (!url || !key) {
+                setFormMessage(formMessage, 'alert-danger', leafT('form.msg.supabaseKeys'));
                 return;
             }
 
-            if (!window._supabaseClient) {
-                window._supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            }
+            window._supabaseClient ??= window.supabase.createClient(url, key);
 
             if (submitBtn) submitBtn.disabled = true;
-            formMessage.className = 'rounded-xl px-4 py-3 text-sm text-zinc-300';
-            formMessage.textContent = leafT('form.msg.sending');
+            setFormMessage(formMessage, 'text-zinc-300', leafT('form.msg.sending'));
 
             try {
                 const { error } = await window._supabaseClient.from('contact_messages').insert({
@@ -233,54 +212,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     subject: temat,
                     message,
                 });
-
                 if (error) {
-                    formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                    formMessage.textContent = leafT('form.msg.fail');
+                    setFormMessage(formMessage, 'alert-danger', leafT('form.msg.fail'));
                 } else {
-                    formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-success';
-                    formMessage.textContent = leafT('form.msg.ok');
+                    setFormMessage(formMessage, 'alert-success', leafT('form.msg.ok'));
                     form.reset();
-                    const counter = document.getElementById('charCount');
-                    if (counter) counter.textContent = '0/500';
+                    if (charCount) {
+                        charCount.textContent = '0/500';
+                        charCount.classList.remove('over-limit');
+                    }
                 }
             } catch {
-                formMessage.className = 'rounded-xl px-4 py-3 text-sm alert-danger';
-                formMessage.textContent = leafT('form.msg.net');
+                setFormMessage(formMessage, 'alert-danger', leafT('form.msg.net'));
             } finally {
                 if (submitBtn) submitBtn.disabled = false;
             }
-        });
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const checkScroll = () => {
-        const sections = document.querySelectorAll('section');
-        const viewportTop = window.scrollY;
-        const viewportBottom = viewportTop + window.innerHeight;
-
-        sections.forEach((section) => {
-            const rect = section.getBoundingClientRect();
-            const elementTop = rect.top + window.scrollY;
-            const elementBottom = elementTop + rect.height;
-
-            if (elementBottom > viewportTop && elementTop < viewportBottom) {
-                section.classList.add('section-visible');
-            }
-        });
-    };
-
-    checkScroll();
-    window.addEventListener('scroll', checkScroll);
-
-    const tresc = document.getElementById('tresc');
-    const charCount = document.getElementById('charCount');
-    if (tresc && charCount) {
-        tresc.addEventListener('keyup', () => {
-            const length = tresc.value.length;
-            charCount.textContent = `${length}/500`;
-            charCount.classList.toggle('over-limit', length > 500);
         });
     }
 });

@@ -31,7 +31,8 @@ const makeScreenTexture = (text, w, h, fontPxMax) => {
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
 
-    ctx.strokeStyle = 'rgba(16, 185, 129, 0.35)';
+    const accentRgb = window.LEAF_COLORS?.accentRgb || '16, 185, 129';
+    ctx.strokeStyle = `rgba(${accentRgb}, 0.45)`;
     ctx.lineWidth = 4;
     ctx.strokeRect(2, 2, w - 4, h - 4);
 
@@ -158,7 +159,8 @@ const init = (host) => {
     key.position.set(2.4, 5.2, 4.8);
     key.castShadow = false;
     scene.add(key);
-    const fill = new THREE.DirectionalLight(0xd1fae5, 0.42);
+    const accentHex = Number.parseInt((window.LEAF_COLORS?.accent || '#10b981').slice(1), 16);
+    const fill = new THREE.DirectionalLight(accentHex, 0.28);
     fill.position.set(-3.8, 3.2, -1.2);
     scene.add(fill);
     const rim = new THREE.DirectionalLight(0xe4e4e7, 0.38);
