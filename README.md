@@ -1,6 +1,6 @@
 # Leaf Webs
 
-Portfolio Mateusza Sygut. Aplikacje mobilne i strony internetowe — od interfejsu po kontakt.
+Portfolio Mateusza Sygut. Aplikacje mobilne i strony internetowe – od interfejsu po kontakt.
 
 Strona jest statyczna: jeden plik HTML, style i kilka skryptów. Działa po polsku i po angielsku.
 
@@ -17,11 +17,11 @@ W pracy liczy się dla mnie:
 
 ## Strona
 
-- **Start** — wprowadzenie i główny projekt
+- **Start** – wprowadzenie i główny projekt
 - **O mnie**
-- **Stack** — frontend, backend, narzędzia i współpraca
-- **Projekty** — ŁawAppka
-- **Kontakt** — laptop 3D (Three.js) i formularz zapisujący wiadomości w Supabase
+- **Stack** – frontend, backend, narzędzia i współpraca
+- **Projekty** – ŁawAppka
+- **Kontakt** – laptop 3D (Three.js) i formularz zapisujący wiadomości w Supabase
 
 ## ŁawAppka
 
@@ -33,13 +33,13 @@ Repozytorium: [mateusz-sygut/benchy](https://github.com/mateusz-sygut/benchy)
 
 ## Technologie
 
-**Frontend** — HTML, CSS / Sass, JavaScript, TypeScript, React, React Native (Expo), Tailwind CSS, WordPress
+**Frontend** – HTML, CSS / Sass, JavaScript, TypeScript, React, React Native (Expo), Tailwind CSS, WordPress
 
-**Backend i dane** — Supabase, PostgreSQL / SQL, REST API, Python, FastAPI, Docker Compose
+**Backend i dane** – Supabase, PostgreSQL / SQL, REST API, Python, FastAPI, Docker Compose
 
-**Narzędzia** — Git, Node.js, Vite, Webpack, Metro, Chrome DevTools, narzędzia AI
+**Narzędzia** – Git, Node.js, Vite, Webpack, Metro, Chrome DevTools, narzędzia AI
 
-**Współpraca** — Jira, Confluence, Figma, Office 365, Google Docs
+**Współpraca** – Jira, Confluence, Figma, Office 365, Google Docs
 
 ## Uruchomienie
 
@@ -69,13 +69,13 @@ with check (true);
 
 ## Struktura
 
-- `index.html` — strona
-- `css/app.css` — hero, nawigacja, stack, formularz, tło projektów
-- `js/theme.js` — kolory i konfiguracja Tailwind
-- `js/locale.js` — teksty PL/EN
-- `js/app.js` — nawigacja, zakładki stacku, formularz
-- `js/3d-contact.js` — laptop w sekcji kontaktu
-- `assets/` — grafiki
+- `index.html` – strona
+- `css/app.css` – hero, nawigacja, stack, formularz, tło projektów
+- `js/theme.js` – kolory i konfiguracja Tailwind
+- `js/locale.js` – teksty PL/EN
+- `js/app.js` – nawigacja, zakładki stacku, formularz
+- `js/3d-contact.js` – laptop w sekcji kontaktu
+- `assets/` – grafiki
 
 ## Kontakt
 
