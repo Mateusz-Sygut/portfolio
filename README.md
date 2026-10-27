@@ -1,6 +1,6 @@
 # Leaf Webs
 
-Portfolio Mateusza Syguta. Aplikacje mobilne i strony internetowe — od interfejsu po kontakt.
+Portfolio Mateusza Sygut. Aplikacje mobilne i strony internetowe — od interfejsu po kontakt.
 
 Strona jest statyczna: jeden plik HTML, style i kilka skryptów. Działa po polsku i po angielsku.
 
