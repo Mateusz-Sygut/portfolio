@@ -26,13 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sections = document.querySelectorAll('header[id], section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    const navOffset = 120;
+
+    const navOffset = () => {
+        const raw = getComputedStyle(document.documentElement).scrollPaddingTop;
+        const value = parseFloat(raw);
+        if (!Number.isFinite(value)) return 140;
+        return (raw.endsWith('rem') ? value * 16 : value) + 32;
+    };
 
     const highlightActiveSection = () => {
         const y = window.scrollY;
+        const line = y + navOffset();
         let current = sections[0]?.id ?? null;
         for (const section of sections) {
-            if (section.offsetTop <= y + navOffset) current = section.id;
+            if (section.offsetTop <= line) current = section.id;
         }
         navLinks.forEach((link) => {
             link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
@@ -76,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scrollend', highlightActiveSection);
     highlightActiveSection();
     revealSections();
 

@@ -14,6 +14,10 @@
 				'hero.h1': 'Cześć, jestem Mateusz',
 				'hero.p':
 					'Tworzę aplikacje i strony – między innymi <span class="text-accent">ŁawAppkę</span>, żeby łatwiej było odkrywać ławki w okolicy.',
+				'hero.chip1k': 'Frontend',
+				'hero.chip1v': 'TypeScript · React',
+				'hero.chip2k': 'Mobile',
+				'hero.chip2v': 'React Native · Expo',
 				'about.h2': 'Parę słów o mnie',
 				'about.p1':
 					'Programuję aplikacje mobilne i strony internetowe. Najbardziej lubię projekty z duszą – takie jak ŁawAppka, gdzie chodzi o to, żeby wyjść z domu, poszukać ładnej ławki, usiąść i napisać parę słów.',
@@ -79,6 +83,8 @@
 				'contact.bodyLabel': 'Treść wiadomości',
 				'contact.bodyPh': 'Wpisz treść wiadomości',
 				'contact.submit': 'Wyślij wiadomość',
+				'contact.privacy':
+					'Imię, nazwisko i email zapisuję tylko po to, żeby odpisać. Nie przekazuję ich dalej.',
 				'form.err.name': 'Imię i nazwisko jest wymagane.',
 				'form.err.email': 'Adres email jest wymagany.',
 				'form.err.emailInvalid': 'Adres email musi być prawidłowy.',
@@ -104,6 +110,10 @@
 				'hero.h1': 'Hi, I’m Mateusz',
 				'hero.p':
 					'I build apps and websites – including <span class="text-accent">Benchy</span>, to make it easier to discover great benches nearby.',
+				'hero.chip1k': 'Frontend',
+				'hero.chip1v': 'TypeScript · React',
+				'hero.chip2k': 'Mobile',
+				'hero.chip2v': 'React Native · Expo',
 				'about.h2': 'A few words about me',
 				'about.p1':
 					'I develop mobile apps and websites. I like projects with character – like Benchy, where the goal is to get outside, find a nice bench, and simply sit down.',
@@ -169,6 +179,8 @@
 				'contact.bodyLabel': 'Message',
 				'contact.bodyPh': 'Enter your message',
 				'contact.submit': 'Send message',
+				'contact.privacy':
+					'I keep your name and email only so I can reply. I don’t share them with anyone else.',
 				'form.err.name': 'Full name is required.',
 				'form.err.email': 'Email is required.',
 				'form.err.emailInvalid': 'Please enter a valid email address.',

@@ -1,86 +1,82 @@
-# Leaf Webs - Moje portfolio
+# Leaf Webs
 
-Nowoczesne portfolio frontend developera, pokazujące projekty, styl pracy i sposób myślenia o produkcie.  
-Strona łączy estetyke z praktycznym celem: szybkim przedstawieniem kompetencji oraz ułatwieniem kontaktu.
+Portfolio Mateusza Syguta. Aplikacje mobilne i strony internetowe — od interfejsu po kontakt.
+
+Strona jest statyczna: jeden plik HTML, style i kilka skryptów. Działa po polsku i po angielsku.
 
 ## O mnie
 
-Jestem Junior Frontend Developerem, rozwijam sie w kierunku tworzenia czytelnych, responsywnych i dopracowanych interfejsów.  
-łącze doswiadczenie techniczne z dobra organizacja pracy, komunikacją w zespole i dbałością o detale.
+Jestem frontend developerem. Programuję aplikacje mobilne i strony, z naciskiem na czytelny interfejs, spokojny kod i projekty, które da się pokazać.
 
-W codziennej pracy stawiam na:
-- komponentowe podejście i reużywalność,
-- przejrzystość kodu i dobra czytelność UI,
-- iteracyjne usprawnianie produktu,
-- odpowiedzialność za jakość i stabilność wdrożeń.
+W pracy liczy się dla mnie:
 
-## Co pokazuje to portfolio
+- komponenty, które da się użyć ponownie,
+- przejrzysty kod i czytelny UI,
+- dopracowanie produktu w kolejnych iteracjach,
+- jakość i stabilność wdrożenia.
 
-- sekcje prezentujace mnie i moje projekty,
-- case projektu Benchy (ŁawAppka),
-- interaktywny moduł 3D w sekcji kontaktu,
-- formularz kontaktowy z zapisem wiadomości do Supabase,
-- wersje jezykowe PL/EN.
+## Strona
 
-## Projekty
+- **Start** — wprowadzenie i główny projekt
+- **O mnie**
+- **Stack** — frontend, backend, narzędzia i współpraca
+- **Projekty** — ŁawAppka
+- **Kontakt** — laptop 3D (Three.js) i formularz zapisujący wiadomości w Supabase
 
-### Benchy (ŁawAppka)
-Aplikacja mobilna do odkrywania, oceniania i dodawania ławek na mapie.  
-Projekt łączy geolokalizacje, elementy grywalizacji i budowanie zaangażowania użytkowników.
+## ŁawAppka
 
-### Leaf Webs (to repozytorium)
-Osobiste portfolio online z naciskiem na UX, nowoczesny wygląd i czytelna prezentacje wartości biznesowej.
+Aplikacja mobilna do odkrywania, dodawania i oceniania ławek w okolicy. Mapa, punkty, odznaki i lekka rywalizacja.
+
+React Native (Expo), TypeScript, Supabase.
+
+Repozytorium: [mateusz-sygut/benchy](https://github.com/mateusz-sygut/benchy)
 
 ## Technologie
 
-- HTML5, CSS3, JavaScript (ES6+)
-- CSS, SCSS, Tailwind CSS 
-- TypeScript
-- React
-- React Native
-- Supabase
-- Narzędzia AI (Microsoft Copilot, Cursor, itp.)
-- Git / GitHub / GitLab
-- Jira, Confluence
-- SQL
-- Python
-- Office 365, Google Docs
-- WordPress
+**Frontend** — HTML, CSS / Sass, JavaScript, TypeScript, React, React Native (Expo), Tailwind CSS, WordPress
 
-## Doswiadczenie i profil
+**Backend i dane** — Supabase, PostgreSQL / SQL, REST API, Python, FastAPI, Docker Compose
 
-Poza frontendem rozwijam umiejetności wspierające pracę projektową:
-- praca zespołowa i komunikacja,
-- analityczne rozwiazywanie problemów,
-- dokumentacja i organizacja pracy,
-- szybkie uczenie sie nowych narzędzi.
+**Narzędzia** — Git, Node.js, Vite, Webpack, Metro, Chrome DevTools, narzędzia AI
 
-## Szybki start
+**Współpraca** — Jira, Confluence, Figma, Office 365, Google Docs
 
-1. Sklonuj repozytorium.
-2. Otworz `index.html` lokalnie lub uruchom przez prosty serwer statyczny.
-3. (Opcjonalnie) skonfiguruj Supabase, aby formularz zapisywal wiadomosci.
+## Uruchomienie
 
-### Konfiguracja Supabase (opcjonalna)
-
-W `index.html` ustaw:
-
-```html
-<script>
-  window.SUPABASE_URL = 'https://twoj-projekt.supabase.co';
-  window.SUPABASE_ANON_KEY = 'twoj_anon_public_key';
-</script>
+```bash
+python -m http.server 8765
 ```
 
-W bazie utwórz tabele `contact_messages` i polityke RLS pozwalającą na `INSERT` dla roli `anon`.
+Potem otwórz [http://127.0.0.1:8765/](http://127.0.0.1:8765/).
 
-## Struktura projektu
+Laptop w sekcji kontaktu ładuje się jako moduł ES, więc podgląd przez serwer statyczny jest pewniejszy niż otwarcie pliku z dysku.
 
-- `index.html` - główna strona portfolio
-- `css/` - style
-- `js/` - logika UI, i18n, interakcje i modul 3D
-- `assets/` - grafiki i tła
+### Formularz i Supabase
+
+W `index.html` ustaw `window.SUPABASE_URL` i `window.SUPABASE_ANON_KEY`.
+
+Tabela `contact_messages` ma kolumny `name`, `email`, `subject` i `message`. Włącz RLS. Rola `anon` może tylko dodawać wiersze. Klucz `service_role` zostaje poza stroną.
+
+```sql
+alter table public.contact_messages enable row level security;
+
+create policy "anon insert only"
+on public.contact_messages
+for insert
+to anon
+with check (true);
+```
+
+## Struktura
+
+- `index.html` — strona
+- `css/app.css` — hero, nawigacja, stack, formularz, tło projektów
+- `js/theme.js` — kolory i konfiguracja Tailwind
+- `js/locale.js` — teksty PL/EN
+- `js/app.js` — nawigacja, zakładki stacku, formularz
+- `js/3d-contact.js` — laptop w sekcji kontaktu
+- `assets/` — grafiki
 
 ## Kontakt
 
-Portfolio zostalo zaprojektowane tak, by kontakt byl szybki i naturalny - przez formularz, e-mail lub numer telefonu.
+Wiadomość idzie przez formularz na dole strony. Imię i email służą tylko do odpowiedzi.
